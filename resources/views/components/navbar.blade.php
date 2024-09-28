@@ -32,8 +32,8 @@
 
           <!-- Action untuk login dan register -->
           <div class="flex items-center">
-            <a href="/login" class="text-gray-700 hover:text-gray-900 mr-4">Login</a>
-            <a href="/register" class="text-gray-700 hover:text-gray-900">Register</a>
+            <x-nav-link href="/login" :active="request()-> is('login')">Login</x-nav-link>
+            <x-nav-link href="/register" :active="request()-> is('register')">Register</x-nav-link>
         </div>
           
       </div>
