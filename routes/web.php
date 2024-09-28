@@ -9,6 +9,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -23,5 +24,7 @@ Route::get('/authors/{user:username}', [UserController::class, 'show']);
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
 
 Route::get('/login', [LoginController::class, 'index']);
+
+Route::get('/register', [RegisterController::class, 'index']);
 
 
