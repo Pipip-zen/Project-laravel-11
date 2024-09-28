@@ -17,25 +17,44 @@
         
                 <div class="mt-4">
                     <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" for="name">Name</label>
-                    <input name="name" id="name" placeholder="Name" class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" type="text" />
+                    <input name="name" id="name" placeholder="Name" class="peer block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 @error('name') border-red-500 @enderror" type="text" required value="{{ old('name') }}" />
+                    @error('name')
+                        <p class="mt-2  peer-invalid:visible text-red-600 text-sm">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
         
                 <div class="mt-4">
                     <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" for="username">Username</label>
-                    <input name="username" id="username" placeholder="Username" class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" type="text" />
+                    <input name="username" id="username" placeholder="Username" class="peer block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 @error('username') border-red-500 @enderror" type="text" required value="{{ old('username') }}"/>
+                    @error('username')
+                        <p class="mt-2  peer-invalid:visible text-red-600 text-sm">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
         
                 <div class="mt-4">
                     <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" for="email">Email Address</label>
-                    <input name="email" id="email" placeholder="name@example.com" class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" type="email" />
+                    <input name="email" id="email" placeholder="name@example.com" class="peer block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 @error('email') border-red-500 @enderror" type="email" required value="{{ old('email') }}"/>
+                    @error('email')
+                        <p class="mt-2  peer-invalid:visible text-red-600 text-sm">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
         
                 <div class="mt-4">
                     <div class="flex justify-between">
                         <label class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200" for="loggingPassword">Password</label>
                     </div>
-        
-                    <input name="password" id="password" placeholder="Password" class="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300" type="password" />
+                    <input name="password" id="password" placeholder="Password" class="peer block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300 @error('password') border-red-500 @enderror" type="password" required/>
+                    @error('password')
+                        <p class="mt-2  peer-invalid:visible text-red-600 text-sm">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
         
                 <div class="mt-6">
