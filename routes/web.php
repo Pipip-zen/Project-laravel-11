@@ -6,8 +6,9 @@ use App\Models\Category;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
@@ -22,3 +23,5 @@ Route::get('/authors/{user:username}', [UserController::class, 'show']);
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
 
 Route::get('/login', [LoginController::class, 'index']);
+
+

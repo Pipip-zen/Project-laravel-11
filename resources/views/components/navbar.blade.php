@@ -32,7 +32,7 @@
 
           <!-- Action untuk login dan register -->
           <div class="flex items-center">
-            <a href="#" class="text-gray-700 hover:text-gray-900 mr-4">Login</a>
+            <a href="/login" class="text-gray-700 hover:text-gray-900 mr-4">Login</a>
             <a href="#" class="text-gray-700 hover:text-gray-900">Register</a>
         </div>
           
