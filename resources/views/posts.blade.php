@@ -1,8 +1,6 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot>
 
-    <x-search></x-search>
-
         <div class="my-4 py-4 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-0 ">
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
