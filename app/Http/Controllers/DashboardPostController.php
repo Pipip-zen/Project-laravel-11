@@ -12,11 +12,13 @@ class DashboardPostController extends Controller
      */
     public function index()
     {
-        return view('dashboard.posts.index');
+        return view('dashboard.posts.index', [
+            'posts' => Post::where('author_id', auth()->user()->id)->get()
+        ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for c reating a new resource.
      */
     public function create()
     {
@@ -36,7 +38,9 @@ class DashboardPostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('dashboard.posts.show', [
+            'post' => $post
+        ]);
     }
 
     /**
