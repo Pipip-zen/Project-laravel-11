@@ -13,7 +13,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-black d-flex align-items-center gap-2 {{ Request::is('dashboard/posts') ? 'bg-black text-white' : '' }}" href="/dashboard/posts">
+          <a class="nav-link text-black d-flex align-items-center gap-2 {{ Request::is('dashboard/posts*') ? 'bg-black text-white' : '' }}" href="/dashboard/posts">
               <i class="fa-solid fa-upload"></i>
               My Post
           </a>

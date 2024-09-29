@@ -19,6 +19,8 @@
 
     @vite(['resources/css/app.css','resources/js/app.js'])
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+
     <script src="https://kit.fontawesome.com/d28a8ff94b.js" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -33,6 +35,15 @@
           </main>
         </div>
       </div>
+
+      <script>
+        ClassicEditor
+            .create( document.querySelector( '#description' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+    
 <script src="/js/bootstrap.bundle.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script></html>
