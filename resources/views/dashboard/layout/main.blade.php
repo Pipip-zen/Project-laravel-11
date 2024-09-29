@@ -17,6 +17,8 @@
 
     <link href="dashboard.css" rel="stylesheet">
 
+    @vite(['resources/css/app.css','resources/js/app.js'])
+
     <script src="https://kit.fontawesome.com/d28a8ff94b.js" crossorigin="anonymous"></script>
   </head>
   <body>
