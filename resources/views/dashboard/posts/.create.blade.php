@@ -12,10 +12,10 @@
             <!-- Modal body -->
             <form action="/dashboard/posts" method="POST">
                 @csrf
-                <div class="grid gap-4 mb-4 ">
+                <div class="grid gap-4 mb-4 w-full">
                     <div>
                         <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Post Title</label>
-                        <input type="text" name="title" id="title" class="peer bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('title') border-red-500 @enderror" placeholder="Type post title" required autofocus>
+                        <input type="text" name="title" id="title" class="peer bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('title') border-red-500 @enderror" placeholder="Type post title"  autofocus value="{{ old('title') }}">
                         @error('title')
                         <p class="mt-2 peer-invalid:visible text-red-600 text-sm">
                             {{ $message }}
@@ -24,7 +24,7 @@
                     </div>
                     <div>
                         <label for="slug" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Post Slug</label>
-                        <input type="text" name="slug" id="slug" class="peer bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('slug') border-red-500 @enderror" placeholder="Post slug" readonly>
+                        <input type="text" name="slug" id="slug" class="peer bg-gray-50 border  text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('slug') border-red-500 @enderror" placeholder="Post slug" readonly required value="{{ old('slug') }}">
                         @error('slug')
                         <p class="mt-2 peer-invalid:visible text-red-600 text-sm">
                             {{ $message }}
@@ -35,13 +35,19 @@
                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                         <select id="category" name="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             @foreach ($categories as $category )
+                                @if (old('category_id') == $category->id)
+                                <option value="{{ $category->id }}" selected> {{ $category->name }}</option>  
+                                @else
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endif
                             @endforeach  
                         </select>
                     </div>
                     <div class="">
                         <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                        <textarea id="body" name="body" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write post body here"></textarea>
+                        <textarea id="body" name="body" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write post body here">
+                            {{ old('body') }}
+                        </textarea>
                         @error('body')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror

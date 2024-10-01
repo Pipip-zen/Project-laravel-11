@@ -5,6 +5,16 @@
         <h1 class="h2">My Posts</h1>
     </div>
 
+    @if (session()->has('success'))
+        
+    <div class="px-4 py-2 -mx-3">
+        <div class="mx-3">
+            <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
+            <p class="text-sm text-gray-600 dark:text-gray-200">{{  session('success') }}</p>
+        </div>
+    </div>
+        
+    @endif
     <!-- Start block -->
 <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
     <div class="mx-auto max-w-screen-2xl px-4 lg:px-12">
