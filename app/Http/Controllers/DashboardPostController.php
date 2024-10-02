@@ -41,9 +41,12 @@ class DashboardPostController extends Controller
             'category_id' => 'required',
             'body' => 'required',
         ]);
+
+        $body = strip_tags(htmlspecialchars($request->input('body')));
+
         
         $validatedData['author_id'] = auth()->user()->id;
-        $validatedData['excerpt'] = Str::limit($request->body, 200, '...');
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
         
         Post::create($validatedData);
 

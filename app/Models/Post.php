@@ -10,10 +10,17 @@ use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory;
 
     protected $primaryKey = 'post_id';
-    protected $fillable = ['title', 'author', 'slug', 'body'];
+    protected $fillable = [
+        'image',
+        'title',
+        'body',
+        'slug',
+        'author_id',
+        'category_id',
+    ];
 
     protected $with = ['author', 'category'];
 

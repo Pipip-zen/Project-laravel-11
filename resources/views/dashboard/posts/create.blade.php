@@ -43,16 +43,15 @@
                             @endforeach  
                         </select>
                     </div>
-                    <div class="">
+                    <div class="mb-4">
                         <label for="body" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                        <textarea id="body" name="body" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Write post body here">
+                        <textarea id="body" name="body" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {{ old('body') }}
                         </textarea>
                         @error('body')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
-                </div>
                 {{-- <div class="mb-4">
                     <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Post Images</span>
                     <div class="flex justify-center items-center w-full">
@@ -84,6 +83,7 @@
     </div>
 </div>
 
+<script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
 <script>
     const titleInput = document.getElementById('title');
     const slugInput = document.getElementById('slug');
@@ -92,6 +92,13 @@
         const title = titleInput.value;
         const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         slugInput.value = slug;
+    });
+
+    ClassicEditor.create(document.querySelector('#body'), {
+    entities: 'raw',
+})
+    .catch(error => {
+        console.error(error);
     });
 </script>
 @endsection
