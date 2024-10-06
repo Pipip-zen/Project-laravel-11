@@ -36,17 +36,23 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('post-images');
-            $validatedData['image_path'] = $imagePath;
-        }
-    
+        
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required|unique:posts',
             'category_id' => 'required',
             'body' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'image.required' => 'Silakan pilih file image',
+            'image.image' => 'File yang dipilih bukan file image',
+            'image.mimes' => 'File yang dipilih harus berupa jpeg, png, jpg, gif, atau svg',
+            'image.max' => 'Ukuran file yang dipilih melebihi 2048 kilobyte',
         ]);
+        
+        $image = $request->file('image');
+        $path = $image->store('img', 'public');
+        $validatedData['image'] = $path;
     
         $body = strip_tags(htmlspecialchars($request->input('body')));
     

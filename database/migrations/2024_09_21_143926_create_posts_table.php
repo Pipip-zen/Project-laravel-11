@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained(
                 table: 'categories', indexName: 'posts_category_id'
             );
-            // $table->string('image');
+            $table->string('image')->nullable();
             $table->string('slug')->unique();
             $table->text('body');
             $table->timestamps();
