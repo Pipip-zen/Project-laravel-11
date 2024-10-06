@@ -72,7 +72,8 @@
                 </div> --}}
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Post Image</label>
-                    <input name="image" id="image"  class="peer block w-full mb-5 text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 form-control @error('image') border-red-500 @enderror" type="file">
+                    <img class="img-preview img-fluid mb-3 col-sm-5">
+                    <input name="image" id="image"  class="peer block w-full mb-5 text-sm text-gray-900 border rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 form-control @error('image') border-red-500 @enderror" type="file" onchange="previewImage()">
                     @error('image')
                     <p class="text-danger">{{ $message }}</p>
                     @enderror
@@ -103,10 +104,28 @@
 
     ClassicEditor.create(document.querySelector('#body'), {
     entities: 'raw',
-})
+    })
+
     .catch(error => {
         console.error(error);
     });
+
+    function previewImage () {
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const ofReader = new FileReader();
+        ofReader.readAsDataURL(image.files[0]);
+
+        ofReader.onload = function(OfREvent) {
+            imgPreview.src = OfREvent.target.result;
+        }
+    }
+
+
+
 </script>
 @endsection
 
