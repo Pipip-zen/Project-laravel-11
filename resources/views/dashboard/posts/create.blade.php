@@ -10,7 +10,7 @@
         <!-- Modal content -->
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
             <!-- Modal body -->
-            <form action="/dashboard/posts" method="POST">
+            <form action="/dashboard/posts" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="grid gap-4 mb-4 w-full">
                     <div>
@@ -55,7 +55,7 @@
                 {{-- <div class="mb-4">
                     <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Post Images</span>
                     <div class="flex justify-center items-center w-full">
-                        <label for="dropzone-file" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <label for="image" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                             <div class="flex flex-col justify-center items-center pt-5 pb-6">
                                 <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -66,10 +66,14 @@
                                 </p>
                                 <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                             </div>
-                            <input id="dropzone-file" type="file" class="hidden">
+                            <input name="image" id="image" type="file" class="hidden">
                         </label>
                     </div>
                 </div> --}}
+                <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="image">Post Image</label>
+                    <input name="image" id="image"  class="block w-full mb-5 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 form-control" type="file">
+                </div>
                 <div class="items-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
                     <a href="/dashboard/posts" data-drawer-target="drawer-read-product-advanced" data-drawer-show="drawer-read-product-advanced" aria-controls="drawer-read-product-advanced" class="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                         &laquo; Back to dashboard
