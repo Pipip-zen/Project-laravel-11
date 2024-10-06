@@ -7,12 +7,6 @@
     <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link text-black d-flex align-items-center gap-2 {{ Request::is('dashboard') ? 'bg-black text-white' : '' }}" aria-current="page" href="/dashboard">
-              <i class="fa-solid fa-house"></i>
-              Dashboard
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link text-black d-flex align-items-center gap-2 {{ Request::is('dashboard/posts*') ? 'bg-black text-white' : '' }}" href="/dashboard/posts">
               <i class="fa-solid fa-upload"></i>
               My Post
