@@ -12,15 +12,12 @@ class AdminCategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-    
-        $categories->load('posts');
-    
+        $categories = Category::with('posts')->paginate(10);
+        
         return view('dashboard.categories.index', [
             'categories' => $categories
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      */

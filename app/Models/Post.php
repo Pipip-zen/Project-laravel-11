@@ -48,6 +48,11 @@ class Post extends Model
             $query->whereHas('author', fn($query) => $query->where('username', $author))
         );
 
+        $query->when($filters['search'] ?? false, fn($query, $search) =>
+        $query->where('title', 'like', '%' . $search . '%')
+              ->orWhere('content', 'like', '%' . $search . '%')
+    );
+
     }
 
     public function getRouteKeyName() {
