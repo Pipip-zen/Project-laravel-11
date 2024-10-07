@@ -34,17 +34,19 @@
                     </div>
                 </article> 
 
-    @empty
-    <div>
-        <p class="font-semibold text-xl my-4">Article Not Found!</p>
-        <a href="/posts" class="block text-blue-600 hover:underline">&laquo; Back to all posts</a>
-    </div>   
-    @endforelse
+                    @empty
+                    <div>
+                        <p class="font-semibold text-xl my-4">Article Not Found!</p>
+                        <a href="/posts" class="block text-blue-600 hover:underline">&laquo; Back to all posts</a>
+                    </div>   
+                    @endforelse
 
                 </div>  
             </div>
 
-            {{ $posts->links() }}
+            <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                {{ $posts->links() }}
+            </div>
 
 
 </x-layout>
