@@ -37,7 +37,7 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-        
+            
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required|unique:posts',
@@ -50,18 +50,18 @@ class DashboardPostController extends Controller
             'image.mimes' => 'File yang dipilih harus berupa jpeg, png, jpg, gif, atau svg',
             'image.max' => 'Ukuran file yang dipilih melebihi 2048 kilobyte',
         ]);
-        
+            
         $image = $request->file('image');
         $path = $image->store('img', 'public');
         $validatedData['image'] = $path;
-    
-        $body = strip_tags(htmlspecialchars($request->input('body')));
-    
+        
+        $validatedData['body'] = strip_tags($request->input('body'));
+        
         $validatedData['author_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
-            
+                
         Post::create($validatedData);
-    
+        
         return redirect('/dashboard/posts')->with('success', 'New post added');
     }
 
@@ -96,7 +96,7 @@ class DashboardPostController extends Controller
         $rules = [
             'title' => 'required|max:255',
             'category_id' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'body' => 'required',
         ];
 
@@ -106,6 +106,7 @@ class DashboardPostController extends Controller
         }
     
         $validatedData = $request->validate($rules);
+        $validatedData['body'] = strip_tags($request->input('body'));
 
         if($request->file('image')) {
             if($request->oldImage) {
@@ -115,7 +116,6 @@ class DashboardPostController extends Controller
         }
     
         $validatedData['author_id'] = auth()->user()->id;
-        // $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
             
         Post::where('id', $post->id)
             ->update($validatedData);
