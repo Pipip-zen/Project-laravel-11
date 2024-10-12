@@ -9,6 +9,12 @@
         <div class="flex flex-col justify-between flex-1 mt-6">
             <nav>
 
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700  {{ Request::is('dashboard') ? 'bg-black text-white' : '' }}" href="/dashboard">
+                  <i class="fa-solid fa-house"></i>
+
+                    <span class="mx-4 font-medium">Dashboard</span>
+                </a>
+
                 <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700  {{ Request::is('dashboard/posts*') ? 'bg-black text-white' : '' }}" href="/dashboard/posts">
                   <i class="fa-solid fa-upload"></i>
 
