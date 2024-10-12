@@ -5,8 +5,7 @@
         <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
             <article class="mx-auto w-full max-w-4xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
                 <header class="mb-4 lg:mb-6 not-format">
-                    <a href="/posts" class="font-medium text-sm text-blue-600 hover:underline">
-                    &laquo; Back to all posts</a>
+
                     <address class="flex items-center my-6 not-italic">
                         <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                             <div>
@@ -22,9 +21,11 @@
                         </div>
                     </address>
                     <img src="{{ asset('storage/' . $post->image) }}" alt="">
-                    <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">{{ $post->title }}</h1>
+                    <h1 class="my-2 mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">{{ $post->title }}</h1>
                 </header>
                 <p>{{$post->body}}</p>
+                <a href="/posts" class="font-medium text-sm text-blue-600 hover:underline">
+                    &laquo; Back to all posts</a>
             </article>
         </div>
     </main>
