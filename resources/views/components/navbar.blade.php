@@ -2,7 +2,7 @@
   <div class="container px-6 py-3 mx-auto md:flex">
       <div class="flex items-center justify-between">
           <a href="/">
-              <h2>News</h2>
+              <h2>ENT News</h2>
           </a>
 
           <!-- Mobile menu button -->

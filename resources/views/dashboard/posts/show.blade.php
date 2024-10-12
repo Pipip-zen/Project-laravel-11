@@ -8,7 +8,7 @@
                 <header class="mb-4 lg:mb-6 not-format">
                     <address class="flex items-center my-6 not-italic">
                         <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">                            <div>
-                                <a href="/posts?author={{ $post->author->username  }}{{ $post->author->username }}" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{{ $post->author->name }}</a>
+                                <a href="/posts?author={{ $post->author->username  }}" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{{ $post->author->name }}</a>
                                 <p class="text-base text-gray-500 dark:text-gray-400 mb-1">{{ $post->created_at->diffForHumans() }}</p>
                                 <a href="/posts?category={{ $post->category->slug }}" class="text-base text-gray-500  hover:underline">
                                     <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
