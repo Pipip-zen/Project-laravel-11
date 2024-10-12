@@ -17,7 +17,8 @@ class DashboardPostController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::latest()->paginate(10);
+
+        $posts = Post::where('author_id', auth()->user()->id)->paginate(10);
     
         if ($request->has('search')) {
             $posts = Post::where('title', 'like', '%' . $request->search . '%')
@@ -28,6 +29,7 @@ class DashboardPostController extends Controller
     
         return view('dashboard.posts.index', compact('posts'));
     }
+
     /**
      * Show the form for c reating a new resource.
      */

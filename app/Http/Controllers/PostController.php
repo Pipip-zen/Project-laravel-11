@@ -20,4 +20,5 @@ class PostController extends Controller
         return view('post', ['title' => 'Single Post', 'post' => $post]);
     }
 
+    
 }
