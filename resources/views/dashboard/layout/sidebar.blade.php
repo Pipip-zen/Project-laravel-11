@@ -26,7 +26,7 @@
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                   <span>ADMINISTRATOR</span>
                 </h6>
-                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 {{ Request::is('dashboard/categories*') ? 'bg-black text-white' : '' }}" href="#">
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 {{ Request::is('dashboard/categories*') ? 'bg-black text-white' : '' }}" href="/dashboard/categories">
                   <i class="fa-solid fa-list"></i>
 
                     <span class="mx-4 font-medium">Post Categories</span>

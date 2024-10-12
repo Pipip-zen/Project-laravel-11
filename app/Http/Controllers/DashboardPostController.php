@@ -15,13 +15,19 @@ class DashboardPostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::where('author_id', auth()->user()->id)->paginate(10);
+        $posts = Post::latest()->paginate(10);
+    
+        if ($request->has('search')) {
+            $posts = Post::where('title', 'like', '%' . $request->search . '%')
+                ->orWhere('content', 'like', '%' . $request->search . '%')
+                ->latest()
+                ->paginate(10);
+        }
     
         return view('dashboard.posts.index', compact('posts'));
     }
-
     /**
      * Show the form for c reating a new resource.
      */

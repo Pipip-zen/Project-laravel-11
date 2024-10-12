@@ -30,7 +30,7 @@
                         </a>
     
                         <p class="mt-2 text-gray-500 dark:text-gray-400">
-                            {{ Str::limit($post['body'], 100) }}
+                            {{ Str::limit(htmlspecialchars_decode($post['body']), 100) }}
                         </p>
     
                         <div class="flex items-center justify-between mt-4">
