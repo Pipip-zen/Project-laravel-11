@@ -25,9 +25,7 @@
                     <div class="container px-6 py-10 mx-auto">
                 
                             <div>
-                                <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80" src="{{ asset('storage/' . $post->image) }}" alt="">
-                
-                                <div class="mt-8">
+                                <img class="relative z-10 object-cover w-full rounded-md h-96 transition duration-500 ease-in-out transform hover:scale-105" src="{{ asset('storage/' . $post->image) }}" alt="">                                <div class="mt-8">
                                     <div class="flex justify-between items-center mb-5 text-gray-500">
                                         <a href="/posts?category={{ $post->category->slug }}" class="text-base text-gray-500  hover:underline">
                                             <span class="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
