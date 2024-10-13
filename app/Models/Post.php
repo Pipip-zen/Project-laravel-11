@@ -31,28 +31,26 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function scopeFilter(Builder $query, array $filters): void {
-        
-        $query->when($filters['search'] ?? false, 
-        fn ($query, $search) =>
-            $query->where('title', 'like', '%' . $search . '%')
-        );
+    public function scopeFilter(Builder $query, array $filters, bool $isDashboard = false): void {
 
         $query->when($filters['category'] ?? false, 
         fn ($query, $category) =>
             $query->whereHas('category', fn($query) => $query->where('slug', $category))
         );
-
+    
         $query->when($filters['author'] ?? false, 
         fn ($query, $author) =>
             $query->whereHas('author', fn($query) => $query->where('username', $author))
         );
-
+    
+        if ($isDashboard && auth()->check()) {
+            $query->where('author_id', auth()->user()->id);
+        }
+    
         $query->when($filters['search'] ?? false, fn($query, $search) =>
         $query->where('title', 'like', '%' . $search . '%')
               ->orWhere('content', 'like', '%' . $search . '%')
-    );
-
+        );
     }
 
     public function getRouteKeyName() {

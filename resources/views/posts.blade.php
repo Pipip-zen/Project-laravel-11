@@ -1,15 +1,16 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot>
 
+    <div class="relative my-4 mx-4">
+        <x-search></x-search>
+    </div>
         <div class="my-4 py-4 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-0 ">
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
-    @forelse ($posts as $post)
-        
- 
+                
 
-
- 
+                @forelse ($posts as $post)
+    
                 <section class="bg-white dark:bg-gray-900">
                     <div class="container px-6 py-10 mx-auto">
                 

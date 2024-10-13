@@ -25,11 +25,6 @@
             <x-nav-link href="/" :active="request()-> is('/')">Home</x-nav-link>
             <x-nav-link href="/posts" :active="request()-> is('posts')">Blog</x-nav-link>
           </div>
-
-          <div class="relative">
-              <x-search></x-search>
-          </div>
-
           
           
           
