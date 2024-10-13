@@ -9,7 +9,8 @@
             <div class="w-full lg:w-1/2">
                 <div class="lg:max-w-lg">
                     <h1 class="text-3xl font-semibold tracking-wide text-gray-800 dark:text-white lg:text-4xl">
-                        Selamat Datang Di Dashboard ENT News
+                        Selamat datang, <span class="text-blue-600 dark:text-blue-400">{{ auth()->user()->username }}</span>
+                        di dashboard ENT News
                     </h1>
     
                     <div class="mt-8 space-y-5">

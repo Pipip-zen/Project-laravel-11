@@ -4,6 +4,16 @@
     <div class="relative my-4 mx-4">
         <x-search></x-search>
     </div>
+    <div class="flex justify-center">
+        @if(request()->has('category') || request()->has('author'))
+            <div class="mb-2">
+                <h1 class="text-2xl font-semibold tracking-wide text-gray-800 dark:text-white lg:text-3xl bg-gray-100 dark:bg-gray-800 rounded-lg p-2">
+                    {{ $title }}
+                    ({{ $posts->total() }} postingan)
+                </h1>
+            </div>
+        @endif
+    </div>
         <div class="my-4 py-4 px-4 mx-auto max-w-screen-xl lg:py-8 lg:px-0 ">
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 
