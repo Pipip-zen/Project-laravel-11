@@ -48,7 +48,7 @@
                 x-transition:leave="transition ease-in duration-100"
                 x-transition:leave-start="opacity-100 scale-100"
                 x-transition:leave-end="opacity-0 scale-90"
-                class="absolute right-0 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-right bg-white rounded-md shadow-xl dark:bg-gray-800"
+                class="absolute left-0 z-20 w-56 py-2 mt-2 overflow-hidden origin-top-left bg-white rounded-md shadow-xl dark:bg-gray-800 md:right-0 md:origin-top-right"
             >
                 <a href="#" class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-300 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
                     <div class="mx-1">
