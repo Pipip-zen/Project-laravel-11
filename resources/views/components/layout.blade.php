@@ -14,6 +14,14 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <script src="https://kit.fontawesome.com/d28a8ff94b.js" crossorigin="anonymous"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     
 </head>
 <body class="h-full">
@@ -22,9 +30,7 @@
     <x-navbar></x-navbar>
 
     <main>
-      <div>
         {{ $slot }}
-      </div>
     </main>
     
     
