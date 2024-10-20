@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -38,35 +39,22 @@ class DashboardPostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
+    public function store(StorePostRequest $request)
+{
+    $validatedData = $request->validated();
+    
+    $image = $request->file('image');
+    $path = $image->store('img', 'public');
+    $validatedData['image'] = $path;
+    
+    $validatedData['body'] = strip_tags($request->input('body'));
+    $validatedData['author_id'] = auth()->user()->id;
+    $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
             
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'slug' => 'required|unique:posts',
-            'category_id' => 'required',
-            'body' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ], [
-            'image.required' => 'Silakan pilih file image',
-            'image.image' => 'File yang dipilih bukan file image',
-            'image.mimes' => 'File yang dipilih harus berupa jpeg, png, jpg, gif, atau svg',
-            'image.max' => 'Ukuran file yang dipilih melebihi 2048 kilobyte',
-        ]);
-            
-        $image = $request->file('image');
-        $path = $image->store('img', 'public');
-        $validatedData['image'] = $path;
-        
-        $validatedData['body'] = strip_tags($request->input('body'));
-        
-        $validatedData['author_id'] = auth()->user()->id;
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
-                
-        Post::create($validatedData);
-        
-        return redirect('/dashboard/posts')->with('success', 'New post added');
-    }
+    Post::create($validatedData);
+    
+    return redirect('/dashboard/posts')->with('success', 'New post added');
+}
 
     /**
      * Display the specified resource.
@@ -94,41 +82,31 @@ class DashboardPostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
-        $rules = [
-            'title' => 'required|max:255',
-            'category_id' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'body' => 'required',
-        ];
-
-    
-        if($request->slug != $post->slug) {
-            $rules['slug'] = 'required|unique:posts';
-        }
-    
-        $validatedData = $request->validate($rules);
+        // Ambil data yang sudah divalidasi
+        $validatedData = $request->validated();
         $validatedData['body'] = strip_tags($request->input('body'));
-
-        if($request->file('image')) {
-            if($request->oldImage) {
-                Storage::delete($request->oldImage);
+    
+        // Cek apakah ada gambar baru yang diupload
+        if ($request->hasFile('image')) {
+            if ($post->image) {
+                Storage::delete($post->image); // Hapus gambar lama jika ada
             }
             $validatedData['image'] = $request->file('image')->store('img');
+        } else {
+            $validatedData['image'] = $post->image; // Menggunakan gambar lama jika tidak ada gambar baru
         }
     
-        $validatedData['author_id'] = auth()->user()->id;
-            
+        // Jangan ubah slug, gunakan slug yang sudah ada
+        $validatedData['slug'] = $post->slug;
+    
+        // Update data postingan
         Post::where('id', $post->id)
             ->update($validatedData);
     
         return redirect('/dashboard/posts')->with('success', 'Post has been updated!');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Post $post)
     {
         if($post->image) {
