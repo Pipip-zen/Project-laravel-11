@@ -15,13 +15,12 @@ class StorePostRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
-            'slug' => 'required|unique:posts,slug,' . $this->post->id,
+            'slug' => 'required|unique:posts,slug,' . ($this->post ? $this->post->id : 'NULL'), 
             'category_id' => 'required',
             'body' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
-
     public function messages()
     {
         return [

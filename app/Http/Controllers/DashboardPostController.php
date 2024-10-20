@@ -80,29 +80,28 @@ class DashboardPostController extends Controller
     }
 
 
-    public function update(StorePostRequest $request, Post $post)
-{
-    $validatedData = $request->validated();
-    $validatedData['body'] = $request->input('body'); // Simpan body tanpa strip_tags
-    
-    // Gambar handling
-    if ($request->hasFile('image')) {
-        if ($post->image) {
-            Storage::delete($post->image); 
+    public function update(StorePostRequest $request, Post $post) {
+        $validatedData = $request->validated();
+        $validatedData['body'] = $request->input('body'); 
+        
+
+        if ($request->hasFile('image')) {
+            if ($post->image) {
+                Storage::delete($post->image); 
+            }
+            $validatedData['image'] = $request->file('image')->store('img');
+        } else {
+            $validatedData['image'] = $post->image; 
         }
-        $validatedData['image'] = $request->file('image')->store('img');
-    } else {
-        $validatedData['image'] = $post->image; 
+
+
+        $validatedData['slug'] = $post->slug; 
+
+
+        Post::where('id', $post->id)->update($validatedData);
+        
+        return redirect('/dashboard/posts')->with('success', 'Post has been updated!');
     }
-
-    // Simpan slug yang sudah ada
-    $validatedData['slug'] = $post->slug;
-
-    // Update data postingan
-    Post::where('id', $post->id)->update($validatedData);
-    
-    return redirect('/dashboard/posts')->with('success', 'Post has been updated!');
-}
 
     public function destroy(Post $post)
     {
