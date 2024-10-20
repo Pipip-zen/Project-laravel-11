@@ -79,20 +79,17 @@
 
     <script>
         const swiper = new Swiper('.swiper-container', {
-            slidesPerView: 1, // Jumlah slide yang ditampilkan
-            spaceBetween: 50, // Jarak antar slide
+            slidesPerView: 1, 
+            spaceBetween: 50, 
             breakpoints: {
                 480: {
-                    slidesPerView: 1, // Menampilkan 1 slide pada layar kecil
-                },
-                640: {
-                    slidesPerView: 2, // Menampilkan 2 slide pada layar sedang
+                    slidesPerView: 1, 
                 },
                 768: {
-                    slidesPerView: 3, // Menampilkan 3 slide pada layar besar
+                    slidesPerView: 2,
                 },
                 1024: {
-                    slidesPerView: 4, // Menampilkan 4 slide pada layar sangat besar
+                    slidesPerView: 4, 
                 },
             },
         });
