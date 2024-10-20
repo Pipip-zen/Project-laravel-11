@@ -1,26 +1,27 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot>
 
-    <div id="default-carousel" class="relative w-full max-w-4xl mx-auto mt-10" data-carousel="slide" style="background-color: transparent;">
+
+    <div id="default-carousel" class="relative w-full max-w-4xl mx-auto mt-20" data-carousel="slide" style="background-color: transparent;">
         <!-- Carousel wrapper -->
         <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-            @foreach ($posts->take(5) as $post)
+            @foreach ($posts->take(4) as $post)
             <!-- Item -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
                 <a href="/posts/{{ $post->slug }}">
                     <img src="{{ asset('storage/' . $post->image) }}" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="{{ $post->title }}">
-                    <div class="absolute bottom-6 left-0 right-0 p-4 bg-black bg-opacity-50 text-white">
-                        <h2 class="text-lg font-bold">{{ $post->title }}</h2>
+                    <div class="absolute bottom-10 left-0 right-0 p-4 bg-black bg-opacity-50 text-white">
+                        <h2 class="text-lg font-bold">{{ Str::limit($post->title, 75) }}</h2>
                         <p class="text-sm">{!! Str::limit($post->body, 100) !!}</p>
                     </div>
                 </a>
             </div>
             @endforeach
         </div>
-    
+        
         <!-- Slider indicators -->
         <div class="absolute z-30 flex -translate-x-1/2 bottom-2 left-1/2 space-x-3 rtl:space-x-reverse">
-            @foreach ($posts->take(5) as $index => $post)
+            @foreach ($posts->take(4) as $index => $post)
             <button type="button" class="w-3 h-3 rounded-full" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}" data-carousel-slide-to="{{ $index }}"></button>
             @endforeach
         </div>
@@ -46,34 +47,54 @@
 
     <section class="bg-white dark:bg-gray-900">
         <div class="container px-6 py-10 mx-auto">
-            <div class="text-center">
+            <div class="flex justify-between items-start mb-4">
                 <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">Latest Post</h1>
-    
-                <p class="max-w-lg mx-auto mt-4 text-gray-500">
-                    Menghadirkan berita-berita aktual dan faktual untuk disajikan setiap harinya kepada seluruh warga PENS
-                </p>
+                <a href="/posts" class="text-blue-500 hover:underline">Lihat Semua</a>
             </div>
     
-            <div class="grid grid-cols-1 gap-8 mt-8 lg:grid-cols-2">
-                @foreach ($posts->take(6) as $post)
-                <div class="relative z-10" style="overflow: hidden;">
-                    <a href="/posts/{{ $post->slug }}"><img class="relative z-10 object-cover w-full rounded-md h-96 transition duration-500 ease-in-out transform hover:scale-105" src="{{ asset('storage/' . $post->image) }}" alt=""></a>
-                
-                    <div class="relative z-20 max-w-lg p-6 mx-auto -mt-20 bg-white rounded-md shadow dark:bg-gray-900">
-                        <a href="/posts/{{ $post->slug }}" class="font-semibold text-gray-800 hover:underline dark:text-white md:text-xl">
-                            {{ $post->title }}
-                        </a>
-                
-                        <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
-                            {!! Str::limit($post->body, 100) !!}
-                        </p>
-                
-                        <p class="mt-3 text-sm text-blue-500">{{ $post->created_at->diffForHumans() }}</p>
+            <div class="swiper-container overflow-hidden">
+                <div class="swiper-wrapper">
+                    @foreach ($posts->take(10) as $post)
+                    <div class="swiper-slide">
+                        <div class="relative z-10">
+                            <a href="/posts/{{ $post->slug }}">
+                                <img class="relative z-10 object-cover w-full rounded-md h-96 transition duration-500 ease-in-out transform hover:scale-105" src="{{ asset('storage/' . $post->image) }}" alt="">
+                            </a>
+                            <div class="relative z-20 max-w-lg p-6 mx-auto -mt-20 bg-white rounded-md shadow dark:bg-gray-900">
+                                <a href="/posts/{{ $post->slug }}" class="font-semibold text-gray-800 hover:underline dark:text-white md:text-xl">
+                                    {{ Str::limit($post->title, 50) }}
+                                </a>
+                                <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                                    {!! Str::limit($post->body, 100) !!}
+                                </p>
+                                <p class="mt-3 text-sm text-blue-500">{{ $post->created_at->diffForHumans() }}</p>
+                            </div>
+                        </div>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
     </section>
 
+    <script>
+        const swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1, // Jumlah slide yang ditampilkan
+            spaceBetween: 50, // Jarak antar slide
+            breakpoints: {
+                480: {
+                    slidesPerView: 1, // Menampilkan 1 slide pada layar kecil
+                },
+                640: {
+                    slidesPerView: 2, // Menampilkan 2 slide pada layar sedang
+                },
+                768: {
+                    slidesPerView: 3, // Menampilkan 3 slide pada layar besar
+                },
+                1024: {
+                    slidesPerView: 4, // Menampilkan 4 slide pada layar sangat besar
+                },
+            },
+        });
+    </script>
 </x-layout>

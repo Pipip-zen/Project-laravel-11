@@ -50,7 +50,3 @@ Route::resource('/dashboard/categories' , AdminCategoryController::class)->excep
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('password.request');
-Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.username');
-Route::get('/reset-password/{username}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
-Route::post('/reset-password', [ForgotPasswordController::class, 'reset'])->name('password.update');

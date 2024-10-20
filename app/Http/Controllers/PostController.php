@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(Request $request) {
-        $posts = Post::filter(request(['search', 'category', 'author']), false)->latest()->paginate(10);
+        $posts = Post::filter(request(['search', 'category', 'author']), false)->latest()->paginate(9);
 
         $category = $request->input('category');
         $author = $request->input('author');
@@ -33,7 +33,7 @@ class PostController extends Controller
             'author' => $author,
         ]);
 
-        $posts = Post::latest()->take(6)->get();
+        $posts = Post::latest()->take(10)->get();
         return view('home', compact('posts'));
     }
 
