@@ -25,7 +25,7 @@
                     <img src="{{ asset('storage/' . $post->image) }}" alt="">
 
                 </header>
-                <p>{{$post->body}}</p>
+                <p>{!! $post->body !!}</p>
                 <a href="/posts" class="font-medium text-sm text-blue-600 hover:underline">
                     &laquo; Back to all posts</a>
             </article>

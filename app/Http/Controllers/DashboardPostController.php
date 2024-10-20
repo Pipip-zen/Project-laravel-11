@@ -40,25 +40,27 @@ class DashboardPostController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StorePostRequest $request)
-{
-    $validatedData = $request->validated();
+    {
+        $validatedData = $request->validated();
+        
+        // Simpan body tanpa strip_tags
+        $validatedData['body'] = $request->input('body');
+        
+        // Simpan gambar
+        $image = $request->file('image');
+        $path = $image->store('img', 'public');
+        $validatedData['image'] = $path;
     
-    $image = $request->file('image');
-    $path = $image->store('img', 'public');
-    $validatedData['image'] = $path;
-    
-    $validatedData['body'] = strip_tags($request->input('body'));
-    $validatedData['author_id'] = auth()->user()->id;
-    $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200, '...');
-            
-    Post::create($validatedData);
-    
-    return redirect('/dashboard/posts')->with('success', 'New post added');
-}
+        // Simpan data lainnya
+        $validatedData['author_id'] = auth()->user()->id;
+        $validatedData['excerpt'] = Str::limit(strip_tags($validatedData['body']), 200, '...');
+        
+        Post::create($validatedData);
+        
+        return redirect('/dashboard/posts')->with('success', 'New post added');
+    }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Post $post)
     {
         return view('dashboard.posts.show', [
@@ -66,9 +68,7 @@ class DashboardPostController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Post $post)
     {
         $categories = Category::all();
@@ -79,34 +79,31 @@ class DashboardPostController extends Controller
         
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(StorePostRequest $request, Post $post)
-    {
-        // Ambil data yang sudah divalidasi
-        $validatedData = $request->validated();
-        $validatedData['body'] = strip_tags($request->input('body'));
+{
+    $validatedData = $request->validated();
+    $validatedData['body'] = $request->input('body'); // Simpan body tanpa strip_tags
     
-        // Cek apakah ada gambar baru yang diupload
-        if ($request->hasFile('image')) {
-            if ($post->image) {
-                Storage::delete($post->image); // Hapus gambar lama jika ada
-            }
-            $validatedData['image'] = $request->file('image')->store('img');
-        } else {
-            $validatedData['image'] = $post->image; // Menggunakan gambar lama jika tidak ada gambar baru
+    // Gambar handling
+    if ($request->hasFile('image')) {
+        if ($post->image) {
+            Storage::delete($post->image); 
         }
-    
-        // Jangan ubah slug, gunakan slug yang sudah ada
-        $validatedData['slug'] = $post->slug;
-    
-        // Update data postingan
-        Post::where('id', $post->id)
-            ->update($validatedData);
-    
-        return redirect('/dashboard/posts')->with('success', 'Post has been updated!');
+        $validatedData['image'] = $request->file('image')->store('img');
+    } else {
+        $validatedData['image'] = $post->image; 
     }
+
+    // Simpan slug yang sudah ada
+    $validatedData['slug'] = $post->slug;
+
+    // Update data postingan
+    Post::where('id', $post->id)->update($validatedData);
+    
+    return redirect('/dashboard/posts')->with('success', 'Post has been updated!');
+}
+
     public function destroy(Post $post)
     {
         if($post->image) {

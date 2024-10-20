@@ -24,7 +24,7 @@
                         </a>
                 
                         <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
-                            {{ Str::limit($post->body, 100) }}
+                            {!! Str::limit($post->body, 100) !!}
                         </p>
                 
                         <p class="mt-3 text-sm text-blue-500">{{ $post->created_at->diffForHumans() }}</p>
