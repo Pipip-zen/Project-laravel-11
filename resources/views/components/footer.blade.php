@@ -25,30 +25,24 @@
             <div class="mt-6 lg:mt-0 lg:flex-1">
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                     <div>
-                        <h3 class="text-gray-700 uppercase dark:text-white">About</h3>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Company</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">community</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Careers</a>
+                        <h3 class="text-gray-700 uppercase dark:text-white">Unit</h3>
+                        <a href="http://mis.eepis-its.edu/" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">EEPIS Information System</a>
+                        <a href="http://kemahasiswaan.pens.ac.id/" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Unit Kegiatan Mahasiswa</a>
+                        <a href="http://noc.pens.ac.id/" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Jaringan Komputer</a>
                     </div>
 
                     <div>
-                        <h3 class="text-gray-700 uppercase dark:text-white">Blog</h3>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Tec</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Music</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Videos</a>
+                        <h3 class="text-gray-700 uppercase dark:text-white">Mahasiswa</h3>
+                        <a href="http://web.student.pens.ac.id/" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Website Mahasiswa</a>
+                        <a href="http://mail.student.pens.ac.id/" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Email Mahasiswa</a>
+                        <a href="http://bem.pens.ac.id/" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Badan Eksekutif Mahasiswa</a>
                     </div>
 
                     <div>
-                        <h3 class="text-gray-700 uppercase dark:text-white">Products</h3>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Mega cloud</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Aperion UI</a>
-                        <a href="#" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Meraki UI</a>
-                    </div>
-
-                    <div>
-                        <h3 class="text-gray-700 uppercase dark:text-white">Contact</h3>
-                        <span class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">+1 526 654 8965</span>
-                        <span class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">example@email.com</span>
+                        <h3 class="text-gray-700 uppercase dark:text-white">Informasi</h3>
+                        <a href="http://online.mis.pens.ac.id/" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Online MIS</a>
+                        <a href="http://pmb.pens.ac.id/" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Penerimaan Mahasiswa Baru</a>
+                        <a href="http://elearning.pens.ac.id/" class="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline">Elearning PENS</a>
                     </div>
                 </div>
             </div>
